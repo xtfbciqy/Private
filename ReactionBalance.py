@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on Fri Apr 19 21:38:35 2024
-version = 001a1
+version = 001a2
 @author: 2acffb24
 """
 
