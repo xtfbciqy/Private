@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on Fri Apr 19 21:38:35 2024
-version = 001a1
+version = 001a3
 @author: 2acffb24
 """
 
@@ -149,11 +149,11 @@ while (int__pivot_r > 0 and int__pivot_c > 0):
         int__pivot_c -= 1
 
 list__lcm = []
-for int__iter in range(1, int__rindex):
+for int__iter in range(1, int__rindex + 1):
     if int__iter <= int__cindex - 1:
         list__lcm.append(list__c_matrix[int__iter - 1][int__iter - 1])
 int__lcm = fun__lcm_list(list__lcm)
-for int__iter in range(1, int__rindex):
+for int__iter in range(1, int__rindex + 1):
     if (int__iter <= int__cindex - 1 and
         abs(list__c_matrix[int__iter - 1][int__iter - 1])
             != int__lcm and list__c_matrix[int__iter - 1][int__iter - 1] != 0):
@@ -181,9 +181,11 @@ for list__iter in list__c_matrix:
     for var__iter in list__iter:
         if var__iter == 0:
             print("{:4g}".format(float(var__iter)), end="   ")
-        if var__iter != 0:
+        elif var__iter != 0 and var__iter == list__c_matrix[0][0]:
             print("{:4g}".format(float(var__iter / list__c_matrix[0][0])),
                   end="   ")
+        elif var__iter != list__c_matrix[0][0]:
+            print("{}".format(float(var__iter / list__c_matrix[0][0])), end="")
     print("\n", end="")
 print(f"\nKernel:\n\n{list__result}\n")
 print("Result:\n")
