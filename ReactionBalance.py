@@ -45,7 +45,7 @@ for line in c_matrix:
             print("{0:2}".format(iter_var), end=":(  ")
         else:
             print("{0:4g}".format(iter_var), end="   ")
-    print("  )\n", end="")
+    print("  )")
     del line[:1]
 print("\n", end="")
 
