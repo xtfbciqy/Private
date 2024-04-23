@@ -149,19 +149,19 @@ while (pivot_r > 0 and pivot_c > 0):
         pivot_c -= 1
 
 lcm = []
-for iter_int in range(1, rindex + 1):
-    if iter_int <= cindex - 1 and iter_int <= rindex - 1:
+for iter_int in range(1, rindex):
+    if iter_int <= cindex - 1:
         lcm.append(c_matrix[iter_int - 1][iter_int - 1])
 lcm = lcm_list(lcm)
-for iter_int in range(1, rindex + 1):
-    if (iter_int <= cindex and
+for iter_int in range(1, rindex):
+    if (iter_int <= cindex - 1 and
         abs(c_matrix[iter_int - 1][iter_int - 1])
             != lcm and c_matrix[iter_int - 1][iter_int - 1] != 0):
         o3 = lcm / c_matrix[iter_int - 1][iter_int - 1]
         for c_iter in range(1, cindex + 1):
             c_matrix[iter_int - 1][c_iter - 1] = int(round(
                 o3 * c_matrix[iter_int - 1][c_iter - 1], 0))
-    if (iter_int <= cindex and
+    if (iter_int <= cindex - 1 and
             c_matrix[iter_int - 1][iter_int - 1] > 0):
         for c_iter in range(1, cindex + 1):
             c_matrix[iter_int - 1][c_iter - 1] *= -1
