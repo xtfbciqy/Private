@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on Fri Apr 19 21:38:35 2024
-version = 001a2
+version = 001a3
 @author: 2acffb24
 """
 
@@ -149,11 +149,11 @@ while (pivot_r > 0 and pivot_c > 0):
         pivot_c -= 1
 
 lcm = []
-for iter_int in range(1, rindex):
+for iter_int in range(1, rindex + 1):
     if iter_int <= cindex - 1:
         lcm.append(c_matrix[iter_int - 1][iter_int - 1])
 lcm = lcm_list(lcm)
-for iter_int in range(1, rindex):
+for iter_int in range(1, rindex + 1):
     if (iter_int <= cindex - 1 and
         abs(c_matrix[iter_int - 1][iter_int - 1])
             != lcm and c_matrix[iter_int - 1][iter_int - 1] != 0):
@@ -181,8 +181,10 @@ for iter_list in c_matrix:
     for iter_var in iter_list:
         if iter_var == 0:
             print("{:4g}".format(float(iter_var)), end="   ")
-        if iter_var != 0:
+        elif iter_var != 0 and iter_var == c_matrix[0][0]:
             print("{:4g}".format(float(iter_var / c_matrix[0][0])), end="   ")
+        elif iter_var != c_matrix[0][0]:
+            print("{}".format(float(iter_var / c_matrix[0][0])), end="")
     print("\n", end="")
 print(f"\nKernel:\n\n{result}\n")
 print("Result:\n")
