@@ -150,7 +150,7 @@ while (pivot_r > 0 and pivot_c > 0):
 
 lcm = []
 for iter_int in range(1, rindex + 1):
-    if iter_int <= cindex:
+    if iter_int <= cindex - 1 and iter_int <= rindex - 1:
         lcm.append(c_matrix[iter_int - 1][iter_int - 1])
 lcm = lcm_list(lcm)
 for iter_int in range(1, rindex + 1):
