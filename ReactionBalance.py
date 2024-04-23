@@ -29,7 +29,7 @@ for iter_dict in r_dict:
     for element in iter_dict.keys():
         iter_dict[element] *= -1
 dict_c = l_dict + r_dict
-for iter_dict in dict:
+for iter_dict in dict_c:
     for element in iter_dict.keys():
         if element not in elements:
             elements.append(element)
