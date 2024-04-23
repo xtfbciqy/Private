@@ -149,19 +149,19 @@ while (int__pivot_r > 0 and int__pivot_c > 0):
         int__pivot_c -= 1
 
 list__lcm = []
-for int__iter in range(1, int__rindex + 1):
-    if iter_int <= cindex - 1 and iter_int <= rindex - 1:
+for int__iter in range(1, int__rindex):
+    if iter_int <= cindex - 1:
         list__lcm.append(list__c_matrix[int__iter - 1][int__iter - 1])
 int__lcm = fun__lcm_list(list__lcm)
-for int__iter in range(1, int__rindex + 1):
-    if (int__iter <= int__cindex and
+for int__iter in range(1, int__rindex):
+    if (int__iter <= int__cindex - 1 and
         abs(list__c_matrix[int__iter - 1][int__iter - 1])
             != int__lcm and list__c_matrix[int__iter - 1][int__iter - 1] != 0):
         float__o3 = int__lcm / list__c_matrix[int__iter - 1][int__iter - 1]
         for int__c_iter in range(1, int__cindex + 1):
             list__c_matrix[int__iter - 1][int__c_iter - 1] = int(round(
                 float__o3 * list__c_matrix[int__iter - 1][int__c_iter - 1], 0))
-    if (int__iter <= int__cindex and
+    if (int__iter <= int__cindex - 1 and
             list__c_matrix[int__iter - 1][int__iter - 1] > 0):
         for int__c_iter in range(1, int__cindex + 1):
             list__c_matrix[int__iter - 1][int__c_iter - 1] *= -1
