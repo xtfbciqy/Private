@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on Fri Apr 19 21:38:35 2024
-
+version = 001a1
 @author: 2acffb24
 """
 
@@ -42,10 +42,10 @@ c_matrix = output
 for line in c_matrix:
     for iter_var in line:
         if not isinstance(iter_var, int):
-            print("{0:2}".format(iter_var), end=":(")
+            print("{0:2}".format(iter_var), end=":(  ")
         else:
-            print("{0:6}".format(iter_var), end="")
-    print("     )\n", end="")
+            print("{0:4g}".format(iter_var), end="   ")
+    print("  )\n", end="")
     del line[:1]
 print("\n", end="")
 
@@ -120,13 +120,12 @@ while (pivot_r <= rindex and pivot_c <= cindex):
         pivot_c += 1
 
 pivot_r = rindex
-pivot_c = rindex
+pivot_c = cindex - 1
 
 while (pivot_r > 0 and pivot_c > 0):
-    if pivot_c > cindex:
+    if c_matrix[pivot_r - 1][pivot_c - 1] == 0:
         pivot_r -= 1
-        pivot_c -= 1
-    if c_matrix[pivot_r - 1][pivot_c - 1] != 0:
+    else:
         for r_iter in range(pivot_r - 1, 0, -1):
             if c_matrix[r_iter - 1][pivot_c - 1] != 0:
                 o1 = c_matrix[pivot_r - 1][pivot_c - 1]
@@ -146,8 +145,8 @@ while (pivot_r > 0 and pivot_c > 0):
             if gcm > 1:
                 for iter_int in range(cindex):
                     iter_list[iter_int] = iter_list[iter_int] // gcm
-    pivot_r -= 1
-    pivot_c -= 1
+        pivot_r -= 1
+        pivot_c -= 1
 
 lcm = []
 for iter_int in range(1, rindex + 1):
@@ -169,40 +168,44 @@ for iter_int in range(1, rindex + 1):
 
 result = []
 for iter_list in c_matrix:
-    print("    ", end="")
+    print("      ", end="")
     for iter_var in iter_list:
-        print("{0:6}".format(iter_var), end="")
+        print("{0:4g}".format(iter_var), end="   ")
     print("\n", end="")
     if abs(iter_list[-1]) != 0:
         result.append(abs(iter_list[-1]))
 result.append(abs(c_matrix[0][0]))
 print("")
 for iter_list in c_matrix:
-    print("         ", end="")
+    print("      ", end="")
     for iter_var in iter_list:
         if iter_var == 0:
-            print("{}".format(float(iter_var)), end="   ")
+            print("{:4g}".format(float(iter_var)), end="   ")
         if iter_var != 0:
-            print("{}".format(iter_var / c_matrix[0][0]), end="   ")
+            print("{:4g}".format(float(iter_var / c_matrix[0][0])), end="   ")
     print("\n", end="")
-print(f"\n         {result}\n")
+print(f"\nKernel:\n\n{result}\n")
 print("Result:\n")
 
 len_l = len(l_equation.replace(" + ", " ").split())
 len_r = len(r_equation.replace(" + ", " ").split())
 
 for iter_int in range(len(result)):
+    if result[iter_int] == 1:
+        print_result = ""
+    else:
+        print_result = str(result[iter_int]) + " "
     if iter_int < len_l - 1:
-        print(f"{result[iter_int]}\
- {l_equation.replace(" + ", " ").split()[iter_int]}", end=" + ")
+        print(f"{print_result}\
+{l_equation.replace(" + ", " ").split()[iter_int]}", end=" + ")
     elif iter_int == len_l - 1:
-        print(f"{result[iter_int]}\
- {l_equation.replace(" + ", " ").split()[iter_int]}", end=" → ")
+        print(f"{print_result}\
+{l_equation.replace(" + ", " ").split()[iter_int]}", end=" → ")
     elif iter_int < len_l + len_r - 1:
-        print(f"{result[iter_int]}\
- {r_equation.replace(" + ", " ").split()[iter_int - len_l]}",
+        print(f"{print_result}\
+{r_equation.replace(" + ", " ").split()[iter_int - len_l]}",
          end=" + ")
     elif iter_int == len_l + len_r - 1:
-        print(f"{result[iter_int]}\
- {r_equation.replace(" + ", " ").split()[iter_int - len_l]}",
+        print(f"{print_result}\
+{r_equation.replace(" + ", " ").split()[iter_int - len_l]}",
          end="")
