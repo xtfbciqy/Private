@@ -28,13 +28,13 @@ r_dict = [chemparse.parse_formula(component)
 for iter_dict in r_dict:
     for element in iter_dict.keys():
         iter_dict[element] *= -1
-dict = l_dict + r_dict
+dict_c = l_dict + r_dict
 for iter_dict in dict:
     for element in iter_dict.keys():
         if element not in elements:
             elements.append(element)
 output = [[element] + [int(iter_dict.get(element, 0))
-                       for iter_dict in dict]
+                       for iter_dict in dict_c]
           for element in sorted(elements)]
 
 print("")
