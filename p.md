@@ -14,3 +14,4 @@ while h ≤ m and k ≤ n
                 A[i, j] := A[i, j] - A[h, j] * f
         h := h + 1
         k := k + 1
+
