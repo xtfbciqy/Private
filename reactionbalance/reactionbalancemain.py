@@ -1,9 +1,4 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Tue May 28 12:53:05 2024
-
-@author: 2acffb24
-"""
 from fractions import Fraction
 import chemparse
 
@@ -234,6 +229,8 @@ def main(equation_para0):
 
 
 if __name__ == '__main__':
+    # https://github.com/xtfbciqy/Private
+    # equation = "Fe2(SO4)3 + KOH → K2SO4 + Fe(OH)3"
     # equation = "MnS + As2Cr10O35 + H2SO4 → HMnO4 + AsH3 + CrS3O12 + H2O"
     # equation = "(Cr(N2H4CO)6)4(Cr(CN)6)3 + KMnO4 + H2SO4 → K2Cr2O7 + MnSO4 + CO2 + KNO3 + K2SO4 + H2O"
     # equation = "Cu+ + Fe → Fe+3 + Cu"

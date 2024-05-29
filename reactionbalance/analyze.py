@@ -1,9 +1,4 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Sun May 26 16:43:20 2024
-
-@author: 2acffb24
-"""
 from fractions import Fraction
 import matplotlib.pyplot as plt
 import random
