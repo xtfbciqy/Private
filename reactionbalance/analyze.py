@@ -5,44 +5,49 @@ Created on Sun May 26 16:43:20 2024
 @author: 2acffb24
 """
 from fractions import Fraction
-import numpy as np
 import matplotlib.pyplot as plt
+import random
 import time
 import reactionbalancemain
 
 
-def generate_matrix_func(n=2, limit=10):
-    np.random.seed(n)
+def generate_matrix(n=2, limit=10):
+    random.seed(n)
+
+    def uniform_fraction(limit):
+        return Fraction(random.uniform(0, limit))
     if n > 1:
-        last_column = np.array(0)
+        last_column = [0]
         while 0 in last_column:
-            kernel = np.array(0)
+            kernel = [0]
             while 0 in kernel:
-                kernel = np.array([Fraction(np.random.uniform(0, limit))
-                                   for _ in range(n)]).reshape(-1, 1)
-            matrix_b = np.array(0)
-            while 0 in matrix_b:
-                matrix_b = np.array([[
-                    Fraction(np.random.uniform(0, limit)) *
-                    np.random.choice([-1, 1])
-                    for _ in range(n - 1)] for _ in range(n)])
-            last_column = -np.dot(matrix_b, kernel[:-1]) / kernel[-1]
-        return np.hstack((matrix_b, last_column)).tolist()
+                kernel = [uniform_fraction(limit) for _ in range(n)]
+            matrix_b = [[0]]
+            while any(0 in row for row in matrix_b):
+                matrix_b = [[uniform_fraction(limit) * random.choice([-1, 1])
+                             for _ in range(n - 1)] for _ in range(n)]
+            last_column = [-sum(matrix_b[i][j] * kernel[j]
+                                for j in range(n - 1)) / kernel[-1]
+                           for i in range(n)]
+        for i in range(n):
+            matrix_b[i].append(last_column[i])
+        return matrix_b
 
 
 def record_time(start_n=2, end_n=60, step_n=2):
     x = [0, 1]
     y = [0.0, 0.0]
     for n in range(start_n, end_n + 1, step_n):
+        func_input = generate_matrix(n)
         start_time = time.time()
         reactionbalancemain.find_positive_integer_solution(
             reactionbalancemain.kernel_basis_func(
                 reactionbalancemain.matrix_preprocessor_func(
-                    generate_matrix_func(n))))
+                    func_input)))
         end_time = time.time() - start_time
         x.append(n)
         y.append(end_time)
-    return x, y
+    return [x, y]
 
 
 def plot_figure(list_xy):
@@ -57,8 +62,8 @@ def plot_figure(list_xy):
     plt.savefig('figure.png')
 
 
-def debug_func(n=60):
-    func_input = generate_matrix_func(n)
+def debug(n=60):
+    func_input = generate_matrix(n)
     result = reactionbalancemain.find_positive_integer_solution(
         reactionbalancemain.kernel_basis_func(
             reactionbalancemain.matrix_preprocessor_func(
@@ -86,5 +91,5 @@ def debug_func(n=60):
 
 
 if __name__ == '__main__':
-    # debug_func()
+    # debug()
     plot_figure(record_time())

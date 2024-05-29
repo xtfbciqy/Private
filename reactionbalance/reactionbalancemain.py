@@ -234,7 +234,8 @@ def main(equation_para0):
 
 
 if __name__ == '__main__':
+    # equation = "MnS + As2Cr10O35 + H2SO4 → HMnO4 + AsH3 + CrS3O12 + H2O"
     # equation = "(Cr(N2H4CO)6)4(Cr(CN)6)3 + KMnO4 + H2SO4 → K2Cr2O7 + MnSO4 + CO2 + KNO3 + K2SO4 + H2O"
-    equation = input("\nInput example: CO + CO2 + H2 → CH4 + H2O\n\
-             : ")
+    # equation = "Cu+ + Fe → Fe+3 + Cu"
+    equation = input("\nInput example: CO + CO2 + H2 → CH4 + H2O\n             : ")
     main(equation)
